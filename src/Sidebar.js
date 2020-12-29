@@ -2,6 +2,7 @@ import { Avatar, IconButton } from '@material-ui/core'
 import { Chat, DonutLarge, MoreVert, SearchOutlined } from '@material-ui/icons'
 import "./Sidebar.css"
 import React from 'react'
+import SidebarChat from './SidebarChat'
 
 function Sidebar() {
     return (
@@ -32,11 +33,8 @@ function Sidebar() {
             </div>
 
             <div className="sidebar__chats">
-                <h1>This is a Sidebar</h1>
-                <h1>This is a Sidebar</h1>
-                <h1>This is a Sidebar</h1>
-                <h1>This is a Sidebar</h1>
-                <h1>This is a Sidebar</h1>
+                <SidebarChat />
+                <SidebarChat />
             </div>
         </div>
     )
