@@ -1,15 +1,31 @@
 import { Avatar, IconButton } from '@material-ui/core'
 import { SearchOutlined, MoreVert, AttachFile, InsertEmoticon, Mic } from '@material-ui/icons';
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
+import db from './firebase';
 import "./Chat.css"
 
 function Chat() {
     const [seed, setSeed] = useState('');
     const [input, setInput] = useState('');
+    let { roomId } = useParams();
+    const [roomName, setRoomName] = useState('room name');
 
     useEffect(() => {
         setSeed(Math.random(0, 70));
     }, [])
+
+    useEffect(() => {
+        console.log('roomId');
+        if(roomId){
+            db.collection('rooms').doc(roomId).onSnapshot(snapshot => {
+                console.log(snapshot.data().name);
+                setRoomName(snapshot.data().name);
+            })
+        }
+    }, [roomId])
+
+    
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -23,7 +39,7 @@ function Chat() {
                 <Avatar src={`https://i.pravatar.cc/150?${seed}`} />
 
                 <div className="chat__headerInfo">
-                    <h3>Room name</h3>
+                    <h3>{roomName}</h3>
                     <p>Last seen at</p>
                 </div>
 
