@@ -13,7 +13,7 @@ function Chat() {
 
     useEffect(() => {
         setSeed(Math.random(0, 70));
-    }, [])
+    }, [roomId])
 
     useEffect(() => {
         console.log('roomId');
